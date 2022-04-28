@@ -1,0 +1,16 @@
+*.sh
+build/*.js
+node_modules
+*.md
+*.woff
+*.ttf
+.vscode
+.idea
+dist
+mock
+/public
+/docs
+.husky
+.local
+/bin
+Dockerfile
