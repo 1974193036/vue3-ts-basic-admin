@@ -49,6 +49,8 @@ module.exports = {
           max: 1
         }
       }
-    ]
+    ],
+    'space-before-function-paren': [2, 'never'],
+    'vue/singleline-html-element-content-newline': 'off'
   }
 }

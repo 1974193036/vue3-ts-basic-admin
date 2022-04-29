@@ -1,17 +1,39 @@
-<script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-console.log('test101')
-</script>
-
 <template>
   <img
     alt="Vue logo"
     src="./assets/logo.png"
   >
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <HelloWorld ref="helloDOM" msg="Hello Vue 3 + TypeScript + Vite" :abc="10" />
 </template>
+
+<!-- <script setup lang="ts">
+// This starter template is using Vue 3 <script setup> SFCs
+// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import HelloWorld from './components/HelloWorld.vue'
+// console.log('test101')
+</script> -->
+
+<script lang="ts">
+import { defineComponent, ref, onMounted } from 'vue'
+import HelloWorld from './components/HelloWorld.vue'
+
+export default defineComponent({
+  name: 'App',
+  components: {
+    HelloWorld
+  },
+  setup() {
+    // InstanceType：获取组件的实例类型
+    const helloDOM = ref<InstanceType<typeof HelloWorld > | null>(null)
+    onMounted(() => {
+      console.log(helloDOM.value)
+    })
+    return {
+      helloDOM
+    }
+  }
+})
+</script>
 
 <style>
 #app {
