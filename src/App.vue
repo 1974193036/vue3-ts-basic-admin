@@ -4,6 +4,8 @@
     src="./assets/logo.png"
   >
   <HelloWorld ref="helloDOM" msg="Hello Vue 3 + TypeScript + Vite" @increment="onIncrement" />
+  <hr>
+  <TestJsx />
 </template>
 
 <!-- <script setup lang="ts">
@@ -16,11 +18,13 @@ import HelloWorld from './components/HelloWorld.vue'
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
+import TestJsx from './components/TestJSX.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    TestJsx
   },
   setup() {
     // InstanceType：获取组件的实例类型
