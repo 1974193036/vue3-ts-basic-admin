@@ -1,11 +1,12 @@
 <template>
-  <img
+  <!-- <img
     alt="Vue logo"
     src="./assets/logo.png"
   >
   <HelloWorld ref="helloDOM" msg="Hello Vue 3 + TypeScript + Vite" @increment="onIncrement" />
   <hr>
-  <TestJsx />
+  <TestJsx /> -->
+  <router-view />
 </template>
 
 <!-- <script setup lang="ts">
@@ -15,7 +16,7 @@ import HelloWorld from './components/HelloWorld.vue'
 // console.log('test101')
 </script> -->
 
-<script lang="ts">
+<!-- <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 import TestJsx from './components/TestJSX.vue'
@@ -52,4 +53,4 @@ export default defineComponent({
   color: #2c3e50;
   margin-top: 60px;
 }
-</style>
+</style> -->

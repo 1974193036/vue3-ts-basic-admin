@@ -50,7 +50,8 @@ module.exports = {
         }
       }
     ],
-    'space-before-function-paren': [2, 'never'],
-    'vue/singleline-html-element-content-newline': 'off'
+    'space-before-function-paren': ['error', 'never'],
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/multi-word-component-names': 'off'
   }
 }
