@@ -3,7 +3,7 @@
     alt="Vue logo"
     src="./assets/logo.png"
   >
-  <HelloWorld ref="helloDOM" msg="Hello Vue 3 + TypeScript + Vite" :abc="10" />
+  <HelloWorld ref="helloDOM" msg="Hello Vue 3 + TypeScript + Vite" @increment="onIncrement" />
 </template>
 
 <!-- <script setup lang="ts">
@@ -28,8 +28,12 @@ export default defineComponent({
     onMounted(() => {
       console.log(helloDOM.value)
     })
+    const onIncrement = (v: number) => {
+      console.log('onIncrement', v)
+    }
     return {
-      helloDOM
+      helloDOM,
+      onIncrement
     }
   }
 })

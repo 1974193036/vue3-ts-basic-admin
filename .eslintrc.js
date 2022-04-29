@@ -20,7 +20,7 @@ module.exports = {
     es2021: true,
 
     // 诸如defineProps和defineemit等编译器宏会生成no-undef警告
-    // 你需要在ESLint配置文件中启用编译器宏环境。如果不想全局地公开这些变量，可以使用/* global defineProps，或defineemit */。
+    // 你需要在ESLint配置文件中启用编译器宏环境。如果不想全局地公开这些变量，可以使用/* global defineProps，或defineEmits */。
     'vue/setup-compiler-macros': true
   },
   extends: [
