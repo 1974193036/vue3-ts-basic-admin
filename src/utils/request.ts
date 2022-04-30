@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
 const request = axios.create({
-  baseURL: 'http://localhost:9999/api/admin'
+  baseURL: import.meta.env.VITE_API_BASE_URL
 })
 
 // 请求拦截器

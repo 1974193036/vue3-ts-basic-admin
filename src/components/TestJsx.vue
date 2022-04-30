@@ -5,6 +5,6 @@
   </div>
 </template>
 
-<script lang="jsx" setup>
+<script lang="ts" setup>
 import Foo from './foo'
 </script>
