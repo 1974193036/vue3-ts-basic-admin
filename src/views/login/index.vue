@@ -4,7 +4,10 @@
 
 <script lang="ts" setup name="Login">
 import { getLoginInfo } from '@/api/common'
-import type { ILoginInfo } from '@/api/types/common' // 显式的声明这是一个ts的类型
+// 在 script setup 中导出的数据都会被vue模板使用
+// 但是 `ILoginInfo` 是一个ts类型，不想给vue模板使用
+// 所以显式的声明这是一个ts的类型
+import type { ILoginInfo } from '@/api/types/common'
 import { onMounted, ref } from 'vue'
 
 const list = ref<ILoginInfo['slide']>([])
