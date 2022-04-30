@@ -1,5 +1,6 @@
 <template>
   <h1>首页123</h1>
+  <img src="@/assets/logo.png">
   <p>{{ $store.state.count }}</p>
   <p>{{ store.state.count }}</p>
 </template>
@@ -11,4 +12,10 @@ const store = useStore()
 console.log(store.state.count)
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '@/styles/variables.scss';
+
+h1 {
+  color: $colorRed;
+}
+</style>
