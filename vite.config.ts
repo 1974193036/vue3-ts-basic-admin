@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import eslintPlugin from 'vite-plugin-eslint' // https://github.com/gxmari007/vite-plugin-eslint
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
-import path from 'path'
+import path from 'path' // ts 里加载 path 会找不到类型，需要 npm i @types/node -D, tsconfig.js 中加入 "esModuleInterop": true
 
 // https://vitejs.dev/config/
 export default defineConfig({
