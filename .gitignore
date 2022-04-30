@@ -25,3 +25,4 @@ dist-ssr
 *.sw?
 
 笔记.txt
+server.js

@@ -52,6 +52,17 @@ module.exports = {
     ],
     'space-before-function-paren': ['error', 'never'],
     'vue/singleline-html-element-content-newline': 'off',
-    'vue/multi-word-component-names': 'off'
-  }
+    'vue/multi-word-component-names': 'off',
+    indent: 'off',
+    '@typescript-eslint/indent': ['error', 2]
+  },
+  // 针对 src/api/**/*.ts 中的文件覆盖规则
+  overrides: [
+    {
+      files: ['src/api/**/*.ts'],
+      rules: {
+        camelcase: 'off'
+      }
+    }
+  ]
 }

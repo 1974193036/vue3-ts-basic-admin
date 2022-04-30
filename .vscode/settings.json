@@ -1,4 +1,5 @@
 {
+  "editor.tabSize": 2,
   "eslint.enable": true,
   "eslint.format.enable": true,
   "eslint.run": "onType",
@@ -8,6 +9,7 @@
     "typescript",
     "typescriptreact",
     "html",
-    "vue"
+    "vue",
+    "markdown"
   ]
 }
