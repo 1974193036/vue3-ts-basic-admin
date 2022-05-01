@@ -6,8 +6,15 @@
   <HelloWorld ref="helloDOM" msg="Hello Vue 3 + TypeScript + Vite" @increment="onIncrement" />
   <hr>
   <TestJsx /> -->
-  <router-view />
+  <el-config-provider :size="size" :z-index="zIndex">
+    <router-view />
+  </el-config-provider>
 </template>
+
+<script lang="ts" setup>
+const size: 'small' | 'medium' | 'large' = 'small'
+const zIndex: number = 3000
+</script>
 
 <!-- <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs

@@ -4,6 +4,9 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import eslintPlugin from 'vite-plugin-eslint' // https://github.com/gxmari007/vite-plugin-eslint
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import path from 'path' // ts 里加载 path 会找不到类型，需要 npm i @types/node -D, tsconfig.js 中加入 "esModuleInterop": true
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -13,7 +16,22 @@ export default defineConfig({
     // eslintPlugin：运行项目/构建项目的时候，如果eslint不规范，让命令行会报错，页面也会报错
     eslintPlugin(),
     // 给 script setup 标签添加 `name` 属性
-    VueSetupExtend()
+    VueSetupExtend(),
+    // 按需自动导入Element-plush
+    AutoImport({
+      resolvers: [
+        ElementPlusResolver({
+          importStyle: 'sass'
+        })
+      ]
+    }),
+    Components({
+      resolvers: [
+        ElementPlusResolver({
+          importStyle: 'sass'
+        })
+      ]
+    })
   ],
   resolve: {
     alias: {
@@ -24,8 +42,20 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         // additionalData: '$injectedColor: orange;'
-        additionalData: '@import "@/styles/variables.scss";'
+        // additionalData: '@import "@/styles/variables.scss";',
+        additionalData: '@use "@/styles/variables.scss" as *;',
+        javascriptEnabled: true,
+        charset: false
       }
     }
   }
+  // server: {
+  //   proxy: {
+  //     '/api2': {
+  //       target: 'http://localhost:9999/api/',
+  //       changeOrigin: false,
+  //       rewrite: (path) => path.replace(/^\/api2/, '')
+  //     }
+  //   }
+  // }
 })

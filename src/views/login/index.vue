@@ -1,5 +1,12 @@
 <template>
   <h1>登录</h1>
+  <el-button>Default</el-button>
+  <el-button type="primary">Primary</el-button>
+  <el-button type="success">Success</el-button>
+  <el-button type="info">Info</el-button>
+  <el-button type="warning">Warning</el-button>
+  <el-button type="danger">Danger</el-button>
+  <el-button>中文</el-button>
 </template>
 
 <script lang="ts" setup name="Login">
@@ -20,4 +27,8 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+h1 {
+  color: $colorRed;
+}
+</style>

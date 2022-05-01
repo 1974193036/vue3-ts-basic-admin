@@ -13,9 +13,7 @@ console.log(store.state.count)
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/variables.scss';
-
 h1 {
-  color: $colorRed;
+  color: $primary-color;
 }
 </style>

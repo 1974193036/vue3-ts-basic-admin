@@ -1,1 +1,31 @@
 $colorRed: red;
+
+$primary-color: #1890ff;
+$success-color: #52c41a;
+$warning-color: #faad14;
+$danger-color: #f56c6c;
+$error-color: #f56c6c;
+$info-color: #909399;
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: (
+    'primary': (
+      'base': $primary-color,
+    ),
+    'success': (
+      'base': $success-color,
+    ),
+    'warning': (
+      'base': $warning-color,
+    ),
+    'danger': (
+      'base': $danger-color,
+    ),
+    'error': (
+      'base': $error-color,
+    ),
+    'info': (
+      'base': $info-color,
+    ),
+  )
+);
