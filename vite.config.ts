@@ -7,6 +7,9 @@ import path from 'path' // ts 里加载 path 会找不到类型，需要 npm i @
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,17 +23,36 @@ export default defineConfig({
     // 按需自动导入Element-plush
     AutoImport({
       resolvers: [
+        // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
         ElementPlusResolver({
           importStyle: 'sass'
+        }),
+        // 自动导入图标组件
+        IconsResolver({
+          prefix: 'i'
         })
       ]
     }),
     Components({
       resolvers: [
+        // 自动导入 Element Plus 组件
         ElementPlusResolver({
           importStyle: 'sass'
+        }),
+        // 自动注册图标组件
+        IconsResolver({
+          enabledCollections: ['ep']
         })
       ]
+    }),
+    Icons({
+      autoInstall: true
+    }),
+    createSvgIconsPlugin({
+      // Specify the icon folder to be cached
+      iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
+      // Specify symbolId format
+      symbolId: 'icon-[dir]-[name]'
     })
   ],
   resolve: {

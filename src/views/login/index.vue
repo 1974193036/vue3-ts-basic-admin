@@ -10,7 +10,7 @@
   <!-- <el-date-picker v-model="value1" type="date" placeholder="Pick a day" /> -->
 </template>
 
-<script lang="ts" setup name="Login">
+<script lang="ts" setup name="login">
 import { getLoginInfo } from '@/api/common'
 // 在 script setup 中导出的数据都会被vue模板使用
 // 但是 `ILoginInfo` 是一个ts类型，不想给vue模板使用

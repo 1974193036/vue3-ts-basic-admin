@@ -11,14 +11,14 @@ export interface ILoginInfo {
 //   head_pic: string
 // }
 
-// export interface IMenu {
-//   path: string
-//   title: string
-//   icon: string
-//   header: string
-//   is_header: number
-//   children?: IMenu[]
-// }
+export interface IMenu {
+  path: string
+  title: string
+  icon: string
+  header: string
+  is_header: number
+  children?: IMenu[]
+}
 
 // export interface ILoginResponse {
 //   token: string

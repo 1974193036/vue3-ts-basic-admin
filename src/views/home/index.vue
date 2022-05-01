@@ -1,15 +1,14 @@
 <template>
   <h1>首页123</h1>
   <img src="@/assets/logo.png">
-  <p>{{ $store.state.count }}</p>
-  <p>{{ store.state.count }}</p>
+  <!-- <p>{{ $store.state.count }}</p>
+  <p>{{ store.state.count }}</p> -->
+  <el-icon><i-ep-circle-check-filled /></el-icon>
+  <svg-icon name="404" size="32" color="red" />
 </template>
 
-<script lang="ts" setup name="Home">
-import { useStore } from '@/store'
+<script lang="ts" setup name="home">
 
-const store = useStore()
-console.log(store.state.count)
 </script>
 
 <style lang="scss" scoped>
