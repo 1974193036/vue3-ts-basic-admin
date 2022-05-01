@@ -6,13 +6,14 @@
   <HelloWorld ref="helloDOM" msg="Hello Vue 3 + TypeScript + Vite" @increment="onIncrement" />
   <hr>
   <TestJsx /> -->
-  <el-config-provider :size="size" :z-index="zIndex">
+  <el-config-provider :size="size" :z-index="zIndex" :locale="zhCn">
     <router-view />
   </el-config-provider>
 </template>
 
 <script lang="ts" setup>
-const size: 'small' | 'medium' | 'large' = 'small'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+const size: 'small' | 'default' | 'large' = 'small'
 const zIndex: number = 3000
 </script>
 
