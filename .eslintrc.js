@@ -54,7 +54,8 @@ module.exports = {
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multi-word-component-names': 'off',
     indent: 'off',
-    '@typescript-eslint/indent': ['error', 2]
+    '@typescript-eslint/indent': ['error', 2],
+    'no-undef': 'off'
   },
   // 针对 src/api/**/*.ts 中的文件覆盖规则
   overrides: [
@@ -62,6 +63,13 @@ module.exports = {
       files: ['src/api/**/*.ts'],
       rules: {
         camelcase: 'off'
+      }
+    },
+    {
+      files: ['src/types/**/*.ts'],
+      rules: {
+        'no-undef': 'off',
+        'no-unused-vars': 'off'
       }
     }
   ]

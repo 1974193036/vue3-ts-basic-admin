@@ -11,6 +11,8 @@ import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
+const pathSrc = path.join(__dirname, 'src')
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -31,7 +33,8 @@ export default defineConfig({
         IconsResolver({
           prefix: 'i'
         })
-      ]
+      ],
+      dts: path.join(pathSrc, 'types', 'auto-imports.d.ts')
     }),
     Components({
       resolvers: [
@@ -43,7 +46,8 @@ export default defineConfig({
         IconsResolver({
           enabledCollections: ['ep']
         })
-      ]
+      ],
+      dts: path.join(pathSrc, 'types', 'components.d.ts')
     }),
     Icons({
       autoInstall: true
@@ -57,7 +61,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.join(__dirname, 'src')
+      '@': pathSrc
     }
   },
   css: {

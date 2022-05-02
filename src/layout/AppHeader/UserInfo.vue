@@ -1,7 +1,7 @@
 <template>
   <el-dropdown>
     <span class="el-dropdown-link">
-      张三
+      {{ $store.state.user?.account }}
       <el-icon><i-ep-arrow-down /></el-icon>
     </span>
     <template #dropdown>

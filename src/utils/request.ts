@@ -15,7 +15,17 @@ request.interceptors.request.use(function(config) {
 
 // 响应拦截器
 request.interceptors.response.use(function(response) {
-  return response
+  const status = response.data.status
+
+  // 正确的情况
+  if (!status || status === 200) {
+    return response
+  }
+
+  // 其它错误情况
+  ElMessage.error(response.data.msg || '请求失败，请稍后重试')
+  // 手动返回一个 Promise 异常
+  return Promise.reject(response)
 }, function(error) {
   return Promise.reject(error)
 })

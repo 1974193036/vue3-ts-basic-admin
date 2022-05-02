@@ -17,7 +17,7 @@ const props = defineProps({
     default: '#333'
   },
   size: {
-    type: Number,
+    type: [Number, String],
     default: 14
   },
   className: {
