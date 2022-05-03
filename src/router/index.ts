@@ -5,6 +5,7 @@ import systemRouter from './modules/system'
 import settingRouter from './modules/setting'
 import nprogress from 'nprogress' // @types/nprogress
 import 'nprogress/nprogress.css'
+import { store } from '@/store'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -14,6 +15,9 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/admin',
     component: AppLayout,
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         path: 'home',
@@ -40,15 +44,15 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   nprogress.start() // 开始加载进度条
-  // if (to.meta.requiresAuth && !store.state.user) {
-  //   // 此路由需要授权，请检查是否已登录
-  //   // 如果没有，则重定向到登录页面
-  //   return {
-  //     path: '/admin/login',
-  //     // 保存我们所在的位置，以便以后再来
-  //     query: { redirect: to.fullPath }
-  //   }
-  // }
+  if (to.meta.requiresAuth && !store.state.user) {
+    // 此路由需要授权，请检查是否已登录
+    // 如果没有，则重定向到登录页面
+    return {
+      path: '/admin/login',
+      // 保存我们所在的位置，以便以后再来
+      query: { redirect: to.fullPath }
+    }
+  }
 })
 
 router.afterEach(() => {

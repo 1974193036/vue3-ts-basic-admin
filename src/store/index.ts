@@ -9,7 +9,8 @@ const state = {
   isCollapse: false,
   // user: null as ({ token: string } & IUserInfo) | null,
   user: getItem<{ token: string } & IUserInfo>(USER),
-  menus: [] as IMenu[]
+  // menus: [] as IMenu[]
+  menus: getItem<IMenu[]>('MENUS')
 }
 
 // 为 store state 声明类型
@@ -33,6 +34,7 @@ export const store = createStore<State>({
     },
     setMenus(state, payload) {
       state.menus = payload
+      setItem('MENUS', state.menus)
     },
     setUser(state, payload) {
       state.user = payload
