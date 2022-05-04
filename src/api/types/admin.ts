@@ -29,7 +29,7 @@ export interface AdminPostData {
   account: string
   conf_pwd: string
   pwd: string
-  roles: number[]
+  roles: string[]
   status: 0 | 1
   real_name: string
 }

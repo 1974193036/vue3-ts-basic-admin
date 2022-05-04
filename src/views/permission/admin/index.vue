@@ -145,12 +145,18 @@
       />
     </app-card>
   </page-container>
+  <admin-form
+    v-model="formVisible"
+    v-model:admin-id="adminId"
+    @success="handleFormSuccess"
+  />
 </template>
 
 <script lang="ts" setup>
 import { ref, reactive, onMounted } from 'vue'
 import type { IListParams, Admin } from '@/api/types/admin'
 import { getAdmins, deleteAdmin, updateAdminStatus } from '@/api/admin'
+import AdminForm from './AdminForm.vue'
 
 const list = ref<Admin[]>([]) // 列表数据
 const listCount = ref(0)
@@ -202,6 +208,11 @@ const handleUpdate = (id: number) => {
 const handleDelete = async(id: number) => {
   await deleteAdmin(id)
   ElMessage.success('删除成功')
+  loadList()
+}
+
+const handleFormSuccess = () => {
+  formVisible.value = false
   loadList()
 }
 

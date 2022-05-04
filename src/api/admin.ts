@@ -48,6 +48,8 @@ export const getRoles = () => {
     method: 'GET',
     url: '/setting/admin/create'
   }).then(data => {
+    // 在这里处理下数据
+    // 拿到我们想要的数据
     const roles = data.rules.find(item => item.field === 'roles')
     if (roles && roles.options) {
       return roles.options
@@ -61,6 +63,8 @@ export const getAdmin = (id: number) => {
     method: 'GET',
     url: `/setting/admin/${id}/edit`
   }).then(data => {
+    // 在这里处理下数据
+    // 拿到我们想要的数据
     const obj: Record<string, any> = {}
     data.rules.forEach(item => {
       obj[item.field] = item.value
@@ -70,7 +74,7 @@ export const getAdmin = (id: number) => {
       pwd: string
       conf_pwd: string
       real_name: string
-      roles: string[]
+      roles: number[]
       status: 0 | 1
     }
   })
