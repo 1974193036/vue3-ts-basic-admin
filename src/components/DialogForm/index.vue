@@ -73,5 +73,10 @@ const handleConfirm = async() => {
   .el-dialog__body {
     padding: 20px;
   }
+  .title {
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em
+  }
 }
 </style>
