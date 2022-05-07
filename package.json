@@ -19,7 +19,8 @@
     "vue-router": "^4.0.13",
     "vuex": "^4.0.2",
     "vxe-table": "^4.2.4-beta.0",
-    "xe-utils": "^3.5.4"
+    "xe-utils": "^3.5.4",
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",
