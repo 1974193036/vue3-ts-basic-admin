@@ -57,6 +57,14 @@ router.beforeEach((to, from) => {
 
 router.afterEach(() => {
   nprogress.done() // 加载进度条
+
+  scrollTop() // 页面回到顶部
 })
 
+function scrollTop() {
+  const container = document.getElementsByClassName('el-main')[0]
+  if (container && container.scrollTop) {
+    container.scrollTop = 0
+  }
+}
 export default router

@@ -24,3 +24,7 @@ for (const path in modules) {
 }
 
 app.mount('#app')
+
+app.config.warnHandler = function(msg, vm, trace) {
+  console.log(msg)
+}

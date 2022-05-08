@@ -55,7 +55,8 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     indent: 'off',
     '@typescript-eslint/indent': ['error', 2],
-    'no-undef': 'off'
+    'no-undef': 'off',
+    'no-unused-vars': 'off'
   },
   // 针对 src/api/**/*.ts 中的文件覆盖规则
   overrides: [

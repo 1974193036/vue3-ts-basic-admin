@@ -23,8 +23,8 @@ declare module '@vue/runtime-core' {
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
-    ElImage: typeof import('element-plus/es')['ElImage']
     ElInput: typeof import('element-plus/es')['ElInput']
+    ElInputNumber: typeof import('element-plus/es')['ElInputNumber']
     ElLink: typeof import('element-plus/es')['ElLink']
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
@@ -40,13 +40,13 @@ declare module '@vue/runtime-core' {
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTag: typeof import('element-plus/es')['ElTag']
     ElTree: typeof import('element-plus/es')['ElTree']
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
     IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
+    IEpBack: typeof import('~icons/ep/back')['default']
     IEpBell: typeof import('~icons/ep/bell')['default']
-    IEpDocument: typeof import('~icons/ep/document')['default']
     IEpFullScreen: typeof import('~icons/ep/full-screen')['default']
-    IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpSearch: typeof import('~icons/ep/search')['default']
     Loading: typeof import('element-plus/es')['ElLoadingDirective']
     PageContainer: typeof import('./../components/PageContainer/index.vue')['default']
@@ -55,6 +55,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./../components/SvgIcon/index.vue')['default']
     TestJsx: typeof import('./../components/TestJsx.vue')['default']
+    TextEditor: typeof import('./../components/TextEditor/index.vue')['default']
   }
 }
 
