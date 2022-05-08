@@ -199,7 +199,23 @@
           label="活动优先级"
           prop="activity"
         >
-          <el-space>
+          <!-- <el-tag
+              v-for="item in activities"
+              :key="item.name"
+              :type="item.type"
+              effect="dark"
+            >
+              {{ item.name }}
+            </el-tag> -->
+          <!--
+              拖拽元素列表和 v-model 的数据必须一致
+             -->
+          <app-draggable
+            v-model="activities"
+            :options="{
+              animation: 300
+            }"
+          >
             <el-tag
               v-for="item in activities"
               :key="item.name"
@@ -208,25 +224,7 @@
             >
               {{ item.name }}
             </el-tag>
-            <!--
-              拖拽元素列表和 v-model 的数据必须一致
-             -->
-            <!-- <app-draggable
-              v-model="activities"
-              :options="{
-                animation: 300
-              }"
-            >
-              <el-tag
-                v-for="item in activities"
-                :key="item.name"
-                :type="item.type"
-                effect="dark"
-              >
-                {{ item.name }}
-              </el-tag>
-            </app-draggable> -->
-          </el-space>
+          </app-draggable>
         </el-form-item>
         <el-form-item>
           <el-button
