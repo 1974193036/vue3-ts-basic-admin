@@ -5,6 +5,8 @@ import { IMenu, IUserInfo } from '@/api/types/common'
 import { setItem, getItem } from '@/utils/storage'
 import { USER } from '@/utils/constants'
 
+// import createPersistedState from 'vuex-persistedstate' // 可以使用这个插件来存储storage
+
 const state = {
   isCollapse: false,
   // user: null as ({ token: string } & IUserInfo) | null,
@@ -25,6 +27,7 @@ export const key: InjectionKey<Store<State>> = Symbol('store')
 
 // 创建一个新的 store 实例
 export const store = createStore<State>({
+  // plugins: [createPersistedState()],
   state() {
     return state
   },
