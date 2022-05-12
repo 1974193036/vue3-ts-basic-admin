@@ -70,22 +70,17 @@
             </el-radio>
           </el-radio-group>
           <!-- 单规格 -->
-          <!-- <AttrTable
+          <AttrTable
             v-if="product.spec_type === 0"
             v-model="singleAttrData"
-          /> -->
+          />
         </el-form-item>
-        <!-- <el-form-item
+        <el-form-item
           v-if="product.spec_type === 1"
           class="multi-attr-form_item"
           label="规格模板"
         >
-          <el-space
-            direction="vertical"
-            fill
-            style="width: 100%;"
-            alignment="flex-start"
-          >
+          <el-space direction="vertical" fill style="width: 100%;" alignment="flex-start">
             <AttrTemplate @confirm="attrTpl = $event" />
             <AttrEdit
               v-if="attrTpl.length"
@@ -93,35 +88,32 @@
               @confirm="handleAttrEditConfirm"
             />
             <template v-if="multiAttrData.length">
-              <div>
-                批量设置：
-                <AttrTable
-                  v-model="batchData"
-                >
-                  <template #append>
-                    <el-table-column
-                      label="操作"
-                      fixed="right"
-                      min-width="120"
-                    >
-                      <template #default>
-                        <el-button
-                          type="text"
-                          @click="handleBatchSet"
-                        >
-                          批量设置
-                        </el-button>
-                        <el-button
-                          type="text"
-                          @click="handleClearBatch"
-                        >
-                          清除
-                        </el-button>
-                      </template>
-                    </el-table-column>
-                  </template>
-                </AttrTable>
-              </div>
+              <div>批量设置</div>
+              <AttrTable v-model="batchData">
+                <template #append>
+                  <el-table-column
+                    label="操作"
+                    fixed="right"
+                    min-width="120"
+                  >
+                    <template #default>
+                      <el-button
+                        type="text"
+                        @click="handleBatchSet"
+                      >
+                        批量设置
+                      </el-button>
+                      <el-button
+                        type="text"
+                        @click="handleClearBatch"
+                      >
+                        清除
+                      </el-button>
+                    </template>
+                  </el-table-column>
+                </template>
+              </AttrTable>
+
               <div>商品属性</div>
               <AttrTable
                 v-model="multiAttrData"
@@ -132,6 +124,7 @@
                     :key="item.key"
                     :prop="item.key"
                     :label="item.title"
+                    :min-width="item.minWidth"
                   />
                 </template>
                 <template #append>
@@ -152,7 +145,7 @@
               </AttrTable>
             </template>
           </el-space>
-        </el-form-item> -->
+        </el-form-item>
         <el-form-item
           label="商品详情"
           prop="description"
@@ -199,14 +192,6 @@
           label="活动优先级"
           prop="activity"
         >
-          <!-- <el-tag
-              v-for="item in activities"
-              :key="item.name"
-              :type="item.type"
-              effect="dark"
-            >
-              {{ item.name }}
-            </el-tag> -->
           <!--
               拖拽元素列表和 v-model 的数据必须一致
              -->
@@ -244,11 +229,11 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { getCategoryTree, saveProduct } from '@/api/product'
 import type { ProductAttr, ProductCategory, AttrRuleValue, AttrTableHeader } from '@/api/types/product'
 import type { IElForm, IFormRule, ITagType } from '@/types/element-plus'
-// import AttrTable from './AttrTable.vue'
-// import AttrTemplate from './AttrTemplate.vue'
-// import AttrEdit from './AttrEdit.vue'
+import AttrTable from './AttrTable.vue'
+import AttrTemplate from './AttrTemplate.vue'
+import AttrEdit from './AttrEdit.vue'
 
-// const attrTpl = ref<AttrRuleValue[]>([])
+const attrTpl = ref<AttrRuleValue[]>([])
 
 const activities = ref<({type: ITagType, name: string})[]>([
   { type: 'danger', name: '秒杀' },
@@ -270,59 +255,65 @@ const product = ref({
     'https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png',
     'https://file.iviewui.com/dist/e1cf12c07bf6458992569e67927d767e.png'
   ],
-  // attrs: [] as ProductAttr[], // 商品规格
+  attrs: [] as ProductAttr[], // 商品规格数据，多规格的时候多了 颜色、尺码 等
   spec_type: 0 as 0 | 1, // 0 单规格、1 多规格
   description: '',
   ficti: 0,
   is_show: 1,
   is_hot: 0,
-  activity: computed(() => activities.value.map(item => item.name))
+  activity: computed(() => activities.value.map(item => item.name)),
+  header: [] as AttrTableHeader[],
+  items: [] as AttrRuleValue[]
 })
 
 setTimeout(() => {
   product.value.description = '<h1>hello world</h1>'
 }, 1000)
 
-// const singleAttrData = ref([{
-//   pic: '',
-//   vip_price: 0,
-//   price: 0,
-//   cost: 0,
-//   ot_price: 0,
-//   stock: 0,
-//   bar_code: '',
-//   weight: 0,
-//   volume: 0,
-//   brokerage: 0,
-//   brokerage_two: 0
-// }])
+// 单规格数据
+const singleAttrData = ref([{
+  pic: '',
+  vip_price: 0,
+  price: 0,
+  cost: 0,
+  ot_price: 0,
+  stock: 0,
+  bar_code: '',
+  weight: 0,
+  volume: 0,
+  brokerage: 0,
+  brokerage_two: 0
+}])
 
-// const multiAttrData = ref<ProductAttr[]>([])
+// 多规格数据
+const multiAttrData = ref<ProductAttr[]>([])
 
-// watch([singleAttrData, multiAttrData, () => product.value.spec_type], () => {
-//   product.value.attrs = product.value.spec_type === 0
-//     ? singleAttrData.value
-//     : multiAttrData.value
-// }, {
-//   immediate: true, // 立即执行
-//   deep: true // 深度监视
-// })
+// 监听数据，最终提交给后台的数据就是 `product.value.attrs`
+watch([singleAttrData, multiAttrData, () => product.value.spec_type], () => {
+  product.value.attrs = product.value.spec_type === 0
+    ? singleAttrData.value
+    : multiAttrData.value
+}, {
+  immediate: true, // 立即执行
+  deep: true // 深度监视
+})
 
-// const defaultAttrData = [{
-//   pic: '',
-//   vip_price: 0,
-//   price: 0,
-//   cost: 0,
-//   ot_price: 0,
-//   stock: 0,
-//   bar_code: '',
-//   weight: 0,
-//   volume: 0,
-//   brokerage: 0,
-//   brokerage_two: 0
-// }]
+const defaultAttrData = [{
+  pic: '',
+  vip_price: 0,
+  price: 0,
+  cost: 0,
+  ot_price: 0,
+  stock: 0,
+  bar_code: '',
+  weight: 0,
+  volume: 0,
+  brokerage: 0,
+  brokerage_two: 0
+}]
 
-// const batchData = ref(JSON.parse(JSON.stringify(defaultAttrData)))
+// 批量设置表格数据
+const batchData = ref(JSON.parse(JSON.stringify(defaultAttrData)))
 
 const formRules = ref<IFormRule>({
   store_name: [
@@ -374,44 +365,46 @@ const loadCates = async() => {
   productCates.value = data
 }
 
-// const handleAttrEditConfirm = (data: {
-//   attr: AttrRuleValue[]
-//   header: AttrTableHeader[]
-//   value: ProductAttr[]
-// }) => {
-//   multiAttrData.value = data.value
-//   product.value.header = data.header
-//   product.value.items = data.attr
-// }
+const handleAttrEditConfirm = (data: {
+  attr: AttrRuleValue[]
+  header: AttrTableHeader[]
+  value: ProductAttr[]
+}) => {
+  // console.log(data.attr, data.header, data.value)
+  multiAttrData.value = data.value
+  product.value.header = data.header
+  product.value.items = data.attr
+}
 
-// const tableHeader = computed(() => {
-//   return product.value.header.filter(item => item.key && item.key.startsWith('value'))
-// })
+const tableHeader = computed(() => {
+  return product.value.header.filter(item => item.key && item.key.startsWith('value'))
+})
 
-// const handleDeleteAttr = (index: number) => {
-//   multiAttrData.value.splice(index, 1)
-// }
+const handleDeleteAttr = (index: number) => {
+  multiAttrData.value.splice(index, 1)
+}
 
-// const handleBatchSet = () => {
-//   // 过滤无效数据
-//   const data = batchData.value[0]
-//   const validData: Record<string, any> = {}
-//   let key: keyof typeof data
-//   for (key in data) {
-//     if (data[key]) {
-//       validData[key] = data[key]
-//     }
-//   }
+const handleBatchSet = () => {
+  // 过滤无效数据
+  const data = batchData.value[0]
+  const validData: Record<string, any> = {}
+  let key: keyof typeof data // keyof 操作符可以用于获取某种类型的所有键，其返回类型是联合类型。
+  for (key in data) {
+    if (data[key]) {
+      validData[key] = data[key]
+    }
+  }
+  // console.log(validData)
 
-//   // 批量设置 multiAttrData
-//   multiAttrData.value.forEach(item => {
-//     Object.assign(item, validData)
-//   })
-// }
+  // 批量设置 multiAttrData
+  multiAttrData.value.forEach(item => {
+    Object.assign(item, validData)
+  })
+}
 
-// const handleClearBatch = () => {
-//   batchData.value = JSON.parse(JSON.stringify(defaultAttrData))
-// }
+const handleClearBatch = () => {
+  batchData.value = JSON.parse(JSON.stringify(defaultAttrData))
+}
 </script>
 
 <!-- <script lang="ts">
@@ -421,14 +414,14 @@ export default {
 </script> -->
 
 <style lang="scss" scoped>
-// :deep(.el-form-item__content) {
-//   overflow: hidden;
-// }
+:deep(.el-form-item__content) {
+  overflow: hidden;
+}
 
-// :deep(.el-space) {
-//   max-width: 100%;
-//   .el-space__item {
-//     max-width: 100%;
-//   }
-// }
+:deep(.el-space) {
+  max-width: 100%;
+  .el-space__item {
+    max-width: 100%;
+  }
+}
 </style>

@@ -106,7 +106,7 @@ export interface AttrTableHeader {
   title: string
 }
 
-export type ProductAttr = Record<string, any> & {
+export type ProductAttr = Record<string, any> & { // 单规格和多规格公共部分数据
   pic: string
   vip_price: number
   price: number

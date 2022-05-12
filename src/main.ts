@@ -20,6 +20,7 @@ app.use(VXETable)
 // 自动注册全局组件
 const modules = import.meta.globEager('@/components/**/index.ts')
 for (const path in modules) {
+  // console.log(path)
   app.use(modules[path].default)
 }
 

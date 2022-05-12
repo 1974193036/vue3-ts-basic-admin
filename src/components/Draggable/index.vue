@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from '@vue/runtime-core'
+import { toRaw, onMounted, onUnmounted, ref } from '@vue/runtime-core'
 import type { PropType } from 'vue'
 import Sortable from 'sortablejs'
 
@@ -44,12 +44,13 @@ const initDraggable = () => {
     onUpdate(e) {
       if (e.oldIndex !== undefined && e.newIndex !== undefined) {
         // console.log(props.modelValue)
-        const list = props.modelValue.slice(0)
+        const list = toRaw(props.modelValue).slice(0)
         // 删除拖拽的元素
         const item = list.splice(e.oldIndex, 1)[0]
         // 把删除的元素放到新的位置
         list.splice(e.newIndex, 0, item)
         // 同步父组件数据
+        console.log('draggable', list)
         emit('update:model-value', list)
       }
     },

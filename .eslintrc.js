@@ -56,7 +56,8 @@ module.exports = {
     indent: 'off',
     '@typescript-eslint/indent': ['error', 2],
     'no-undef': 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'vue/no-mutating-props': 'off'
   },
   // 针对 src/api/**/*.ts 中的文件覆盖规则
   overrides: [
