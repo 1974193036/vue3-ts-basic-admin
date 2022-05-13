@@ -1,5 +1,6 @@
 <template>
   <h1>首页123</h1>
+  <h1>测试自动化部署</h1>
   <img src="@/assets/logo.png">
   <!-- <p>{{ $store.state.count }}</p>
   <p>{{ store.state.count }}</p> -->
