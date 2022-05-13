@@ -10,6 +10,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import legacy from '@vitejs/plugin-legacy'
 
 const pathSrc = path.join(__dirname, 'src')
 
@@ -18,6 +19,9 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
+    legacy({
+      targets: ['defaults', 'not IE 11']
+    }),
     // eslintPlugin：运行项目/构建项目的时候，如果eslint不规范，让命令行会报错，页面也会报错
     eslintPlugin(),
     // 给 script setup 标签添加 `name` 属性
